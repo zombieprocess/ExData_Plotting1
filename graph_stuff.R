@@ -1,39 +1,23 @@
 setwd("~/sandbox/exdata-007/project1/ExData_Plotting1")
 #data <- NULL
 
-# Get Quartz running, if on a Mac
-print2screen <- function(screen = 1) {
-  quartz(title = "Graph Stuff")
-  dev.set(screen)
-}
+# Summary:
+# Helper code to get and tidy the data, and create plot 1 through 4.
 
-# Print all the plots to PNG files! 
-printall2png <- function(data) {
-  
-  # Print plot1 to file.
-  png(filename = "./plot1.png")
-  plot1(data)
-  dev.off()
+# Functions:
+# getdata()      - Pulls the data down and tries to unzip the file. (broken, please use manual method)
+# readdata()     - Function to read and tidy the data. Assumes data is in ~<getwd()>/data.
+# print2screen() - Initializes Quartz to see any plots on the screen device.
+# printall2png() - Assuming you have the data loaded using readdata(), it prints all plots to files.
+# plot1()        - Plot #1
+# plot2()        - Plot #2
+# plot3()        - Plot #3
+# plot4()        - Plot #4
 
-  # Print plot2 to file.
-  png(filename = "./plot2.png")
-  plot2(data)
-  dev.off()
-  
-  # Print plot3 to file.
-  png(filename = "./plot3.png")
-  plot3(data)
-  dev.off()
-  
-  # Print plot4 to file.
-  png(filename = "./plot4.png")
-  plot4(data)
-  dev.off()
-}
 
 # Attempt to download the data and unzip it.
 #
-# Note: This currently isn't very reliable. Ran out of time to fix this,
+# Note: This currently isn't very reliable.(BROKEN) Ran out of time to fix this,
 #       I highly recommend downloading and unziping the data file to ~<getwd()>/data
 get_data <- function() {
   if (!file.exists("data")) {
@@ -53,6 +37,7 @@ get_data <- function() {
 
 }
 
+# Function to read and tidy the data.
 read_data <- function() {
   
   # Read in the raw data, all of it, which will take some time. NA strings are "?"
@@ -65,6 +50,36 @@ read_data <- function() {
   
   # Select only the times between midnight 2007-02-01 and 11:59pm 2007-02-02
   data <<- subset(data, data$Date_Time >= as.POSIXlt("2007-02-01") & data$Date_Time < as.POSIXlt("2007-02-03"))
+}
+
+# Get Quartz running, if on a Mac
+print2screen <- function(screen = 1) {
+  quartz(title = "Graph Stuff")
+  dev.set(screen)
+}
+
+# Print all the plots to PNG files! 
+printall2png <- function(data) {
+  
+  # Print plot1 to file.
+  png(filename = "./plot1.png")
+  plot1(data)
+  dev.off()
+  
+  # Print plot2 to file.
+  png(filename = "./plot2.png")
+  plot2(data)
+  dev.off()
+  
+  # Print plot3 to file.
+  png(filename = "./plot3.png")
+  plot3(data)
+  dev.off()
+  
+  # Print plot4 to file.
+  png(filename = "./plot4.png")
+  plot4(data)
+  dev.off()
 }
 
 plot1 <- function(data) {
