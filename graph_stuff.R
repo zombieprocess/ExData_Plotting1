@@ -1,5 +1,5 @@
 setwd("~/sandbox/exdata-007/project1/ExData_Plotting1")
-#data <- NULL
+data <- NULL
 
 # Summary:
 # Helper code to get and tidy the data, and create plot 1 through 4.
@@ -19,7 +19,7 @@ setwd("~/sandbox/exdata-007/project1/ExData_Plotting1")
 #
 # Note: This currently isn't very reliable.(BROKEN) Ran out of time to fix this,
 #       I highly recommend downloading and unziping the data file to ~<getwd()>/data
-get_data <- function() {
+getdata <- function() {
   if (!file.exists("data")) {
     dir.create("data")
   }
@@ -38,7 +38,7 @@ get_data <- function() {
 }
 
 # Function to read and tidy the data.
-read_data <- function() {
+readdata <- function() {
   
   # Read in the raw data, all of it, which will take some time. NA strings are "?"
   data <<- read.table("./data/household_power_consumption.txt",header=TRUE,sep=";",stringsAsFactors=FALSE,na.strings="?")
@@ -55,7 +55,7 @@ read_data <- function() {
 # Get Quartz running, if on a Mac
 print2screen <- function(screen = 1) {
   quartz(title = "Graph Stuff")
-  dev.set(screen)
+  #dev.set(screen)
 }
 
 # Print all the plots to PNG files! 
